@@ -30,7 +30,16 @@ function loopAString(string) {
   // create a loop which iterates over the input string
   // log current string character to the console
   // increment value of index variable
+
+    var index=0
+  while(index<string.length){
+
+console.log(string.charAt(index))
+index++
+
+  }
 }
+
 
 
 // 2-Write a function called reverseStr that takes a string as an parameter 
@@ -41,3 +50,16 @@ function loopAString(string) {
 
 
 
+function reverseStr(str){
+var i=str.length-1
+var count=1
+var sum=""
+while(i>=0){
+//hello
+
+sum+=str.charAt(i)+count
+count++
+i--
+}
+return sum
+}
