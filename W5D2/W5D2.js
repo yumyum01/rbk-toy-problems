@@ -33,9 +33,38 @@ Remember: your function should work off of the data it receives,
 not a global variable or only the specific example above. 
 I.e. If someone called your function with 10 objects 
 (with all safely have the same properties), it should work just as well.
-*/
 
-// your answer is here
+*/
+function each(coll, f) {
+  if (Array.isArray(coll)) { 
+    for (var i = 0; i < coll.length; i++) { 
+      f(coll[i], i); 
+    } 
+  } else { 
+     for (var key in coll) { 
+       f(coll[key], key); 
+     } 
+   } 
+ } 
+
+  function filter(coll, predicate) {/// predicate = the inline function
+  var acc=[]
+ each(coll,function(element,ind){
+   //console.log(element)
+if(predicate(element)){
+   acc[ind]=element 
+}
+ });
+ return acc 
+}
+
+function tallEnoughToRide(obj){
+	return filter(obj,function(element){
+		return element.heightInInches>=48
+
+		
+	})
+}
 
 /*
 2-Working off of the same data structure as tallEnoughToRide, 
@@ -51,3 +80,29 @@ tallestPerson(groupA); //"Kiana at 55 inches"
 */
 
 // your answer is here
+
+function impreduce(array,f,start){
+  var acc=start
+  if(acc===undefined){
+    acc=array[0]
+    array.slice(1)
+  }
+  each(array,function(element){
+    acc=f(acc,element)
+  })
+  return acc
+}
+function tallestPerson(arr){
+	var z=impreduce(arr,function(max,element){
+if(element>max){
+	max=element}
+	return max
+	})
+
+var f=return filter(obj,function(element){
+		return element.heightInInches===55
+})
+
+return f[0]['name']+"at"+z+"inches"
+
+}
