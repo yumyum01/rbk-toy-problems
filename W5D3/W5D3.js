@@ -4,7 +4,29 @@ and you were given a data set with people's meal preferences and dietary restric
 Write a function called orderAVegetarianDish that takes  an array of empoloyee objects, 
 and returns true if at least 1 person is listed "vegetarian" on their "mealPreferences". 
 Otherwise, your function should return false.
+*/
+function each(coll, f) {
+  if (Array.isArray(coll)) { 
+    for (var i = 0; i < coll.length; i++) { 
+      f(coll[i], i); 
+    } 
+  } else { 
+     for (var key in coll) { 
+       f(coll[key], key); 
+     } 
+   } 
+ } 
 
+ function filter(coll, predicate) {
+  var acc=[]
+ each(coll,function(element,ind){
+  
+if(predicate(element)){
+   acc[ind]=element 
+}
+ });
+ return acc 
+}
 var staffA = [
   {
     name: "Lia",
@@ -31,9 +53,35 @@ var staffA = [
     mealPreferences: "non-vegetarian"
   }
 ];
-Calling your function should result in:
+// Calling your function should result in:
 
-orderAVegetarianDish(staffA); //true
-*/
+// orderAVegetarianDish(staffA); //true
 
-// your answer is here 
+
+function orderAVegetarianDish(arr){
+var z=filter(arr,function(element){
+	return element.mealPreferences==="vegetarian"
+})
+if(z.length!==0)return true
+return false
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
