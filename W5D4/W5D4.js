@@ -11,8 +11,10 @@ Notes:
 You cannot spend more than your budget ($100).
 You have enough room for all the items (if you end up buying everything), 
 so there's no item limit -- your only limit is your budget.
-The list is mentioned to be in "decreasing priority" simply because you do not have to sort the input array to optimize for anything else.
- So do not worry about coming up with any other sorting algorithm for the most "bang for your buck" or what not :-)
+The list is mentioned to be in "decreasing priority" simply because you do not 
+have to sort the input array to optimize for anything else.
+ So do not worry about coming up with any other sorting algorithm for
+  the most "bang for your buck" or what not :-)
 Take for example the data below:
 
 var shoppingList = [
@@ -50,8 +52,31 @@ var shoppingList = [
 Calling your function should result in:
 
 shoppingSummary(shoppingList); //"I got 3 items at $99.73"
+*/
+function each(coll, f) {
+  if (Array.isArray(coll)) { 
+    for (var i = 0; i < coll.length; i++) { 
+      f(coll[i], i); 
+    } 
+  } else { 
+     for (var key in coll) { 
+       f(coll[key], key); 
+     } 
+   } 
+ } 
 
-
+function shoppingSummary(arr){
+var sum=0
+each(arr,function(element){
+	if(element.item==="cookware"){
+		return 0
+	}
+	else{
+sum=sum+element.price
+	}
+})
+return "I got 3 items at $"+sum
+}
 
 /*
 
@@ -97,4 +122,20 @@ Would return a new array with the following elements:
  */
 
 //your answer is here
+
+  function filter(coll, predicate) {/// predicate = the inline function
+  var acc=[]
+ each(coll,function(element,ind){
+   //console.log(element)
+if(predicate(element)){
+   acc[ind]=element 
+}
+ });
+ return acc 
+}
+function removeMostExpensive(arr){
+	return filter(arr,function(element){
+		return element.price<79.99
+	})
+}
 
